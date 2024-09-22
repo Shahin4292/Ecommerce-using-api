@@ -1,4 +1,5 @@
 import 'package:api_eco/controller/geX_controller.dart';
+import 'package:api_eco/screen/display_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -35,7 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisSpacing: 12,
                   ),
                   itemBuilder: (context, index) {
-                    return;
+                    return ProductDisplay(
+                      product: productController.productItem[index],
+                    );
                   });
             }),
           ),
