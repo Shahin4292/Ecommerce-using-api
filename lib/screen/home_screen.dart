@@ -28,18 +28,26 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Expanded(
             child: Obx(() {
-              return GridView.builder(
-                  itemCount: productController.productItem.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 12,
-                    mainAxisSpacing: 12,
-                  ),
-                  itemBuilder: (context, index) {
-                    return ProductDisplay(
-                      product: productController.productItem[index],
-                    );
-                  });
+              if (productController.isLoading.value) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else {
+                return GridView.builder(
+                    itemCount: productController.productItem.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
+                      childAspectRatio: 0.65,
+                    ),
+                    itemBuilder: (context, index) {
+                      return ProductDisplay(
+                        product: productController.productItem[index],
+                      );
+                    });
+              }
             }),
           ),
         ],
